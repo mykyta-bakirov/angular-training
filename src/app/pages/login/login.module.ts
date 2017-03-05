@@ -4,14 +4,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // routes
-import { routes } from './page-two.routes';
+import { routes } from './login.routes';
 
 // custom components
-import { PageTwoComponent } from './page-two.component';
+import { LoginComponent } from './login.component';
 
 @NgModule({
 	declarations: [
-		PageTwoComponent
+		LoginComponent
 	],
 	imports: [
 		routes,

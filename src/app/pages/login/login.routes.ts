@@ -1,9 +1,9 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
-import { PageTwoComponent }    from './page-two.component';
+import { LoginComponent }    from './login.component';
 
 // Route Configuration
 const pageTwoRoutes: Routes = [
-	{ path: 'pagetwo', component: PageTwoComponent },
+	{ path: 'login', component: LoginComponent },
 ];
 
 export const routes = RouterModule.forChild(pageTwoRoutes);
