@@ -2,18 +2,20 @@
     <div class="col-10">
         <h5>
             <b>{{courseItem.title}}</b>
-            <span>{{courseItem.durationMins}}</span>
-            <span class="float-right">{{courseItem.createDate}}</span>
+            <span class="ml-5">{{courseItem.durationMins}}</span>
+            <span class="float-right">{{courseItem.createDate | date}}</span>
 
         </h5>
-        <div>
+        <p class="text-justify">
+            <small>
             {{courseItem.description}}
-        </div>
+            </small>
+        </p>
 
     </div>
     <div class="col-2">
-        <button>Edit course</button>
+        <button class="btn btn-secondary btn-block">Edit course</button>
         <br />
-        <button (click)="delete()">Delete</button>
+        <button class="btn btn-secondary btn-block" (click)="delete()">Delete</button>
     </div>
 </div>

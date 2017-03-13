@@ -1,11 +1,11 @@
 import { ICourse } from './ICourse';
 
 export class CourseItem implements ICourse {
-    id: number;
-    title: string;
-    description: string;
-    durationMins: number;
-    createDate: Date;
+    public id: number;
+    public title: string;
+    public description: string;
+    public durationMins: number;
+    public createDate: Date;
 
     constructor(id: number, title: string, description: string, durationMins: number, createDate: Date) {
         this.id = id;
