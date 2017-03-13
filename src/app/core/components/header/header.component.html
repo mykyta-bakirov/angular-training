@@ -1,12 +1,18 @@
-<nav class="main-navbar">
+<nav class="navbar navbar-light bg-faded">
 	<div class="container">
-		<div class="logo">
-			<div class="logo-title">To do</div>
-			<div class="logo-sub-title">You will make it in time</div>
-		</div>
-		<div class="menu">
-			<div class="menu-item" [routerLink]="'home'" routerLinkActive="active">Home</div>
-			<div class="menu-item" [routerLink]="'pageone'" routerLinkActive="active">Page 1</div>
+		<div class="row">
+			<div class="col-2">
+				<div class="logo">
+				</div>
+			</div>
+			<div class="col-10">
+				<span class="pill navbar-text">breadcrumb</span>
+				<span class="float-right navbar-text">
+					user login
+					<br />
+					<a href="#">log off</a>
+					</span>
+			</div>
 		</div>
 	</div>
 </nav>

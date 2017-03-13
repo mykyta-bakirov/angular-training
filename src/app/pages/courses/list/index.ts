@@ -1,2 +1,2 @@
-export * from './course.module';
-export * from './course.component'
+export * from './courses-list.module';
+export * from './courses-list.component'

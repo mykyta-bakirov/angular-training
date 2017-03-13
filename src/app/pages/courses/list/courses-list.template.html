@@ -1,0 +1,6 @@
+<courses-toolbar>
+</courses-toolbar>
+<div class="courses-list">
+    <course-item *ngFor="let courseItem of courses" [courseItem]="courseItem" (onDelete)="onDeleteCourse($event)">
+    </course-item>
+</div>

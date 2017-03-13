@@ -1,0 +1,19 @@
+<div class="row course-item">
+    <div class="col-10">
+        <h5>
+            <b>{{courseItem.title}}</b>
+            <span>{{courseItem.durationMins}}</span>
+            <span class="float-right">{{courseItem.createDate}}</span>
+
+        </h5>
+        <div>
+            {{courseItem.description}}
+        </div>
+
+    </div>
+    <div class="col-2">
+        <button>Edit course</button>
+        <br />
+        <button (click)="delete()">Delete</button>
+    </div>
+</div>
