@@ -12,6 +12,7 @@ import { CourseItemComponent } from './courseItem/course-item.component';
 import { CoursesToolbarComponent } from './toolbar/toolbar.component';
 
 import { CoursesService } from '../../../core/services/courses/courses.service';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,10 @@ import { CoursesService } from '../../../core/services/courses/courses.service';
 		routes,
 		FormsModule,
 		ReactiveFormsModule,
-		CommonModule
+		CommonModule,
+		ConfirmationPopoverModule.forRoot({
+			confirmButtonType: 'danger' // set defaults here
+		})
 	],
 	providers: [CoursesService]
 })

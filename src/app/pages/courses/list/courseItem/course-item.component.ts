@@ -12,10 +12,14 @@ export class CourseItemComponent {
 	@Input() public courseItem: CourseItem;
 	@Output() public onDelete = new EventEmitter<CourseItem>();
 
+
+	public title: string = 'Do you really want to delete this course?';
+	public message: string = 'This action can not be reverted';
+
 	constructor() {
 	}
 
-	delete(){
+	delete() {
 		this.onDelete.emit(this.courseItem);
 	}
 }

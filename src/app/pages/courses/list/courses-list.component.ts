@@ -12,6 +12,8 @@ import { CoursesService } from '../../../core/services/courses/courses.service';
 export class CoursesListComponent {
 	private courses: CourseItem[];
 
+
+
 	constructor(private _coursesService: CoursesService) {
 		console.log('Page one constructor');
 		this.courses = [];
@@ -23,9 +25,7 @@ export class CoursesListComponent {
 	}
 
 	public onDeleteCourse(courseItem: CourseItem) {
-		if (confirm("Do you really want to delete this course?")) {
-			this._coursesService.RemoveItem(courseItem);
-			this.courses = this._coursesService.GetList();
-		}
+		this._coursesService.RemoveItem(courseItem);
+		this.courses = this._coursesService.GetList();
 	}
 }
