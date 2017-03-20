@@ -21,7 +21,7 @@ import { LoginComponent } from './login.component';
 	],
 	providers: []
 })
-export class PageTwoModule {
+export class LoginModule {
 	constructor() {
 	}
 }

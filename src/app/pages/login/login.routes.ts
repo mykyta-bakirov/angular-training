@@ -2,8 +2,8 @@
 import { LoginComponent }    from './login.component';
 
 // Route Configuration
-const pageTwoRoutes: Routes = [
+const loginRoutes: Routes = [
 	{ path: 'login', component: LoginComponent },
 ];
 
-export const routes = RouterModule.forChild(pageTwoRoutes);
+export const routes = RouterModule.forChild(loginRoutes);

@@ -11,6 +11,8 @@ import { CoursesListComponent } from './courses-list.component';
 import { CourseItemComponent } from './courseItem/course-item.component';
 import { CoursesToolbarComponent } from './toolbar/toolbar.component';
 
+import { CoursesService } from '../../../core/services/courses/courses.service';
+
 @NgModule({
 	declarations: [
 		CoursesListComponent,
@@ -23,7 +25,7 @@ import { CoursesToolbarComponent } from './toolbar/toolbar.component';
 		ReactiveFormsModule,
 		CommonModule
 	],
-	providers: []
+	providers: [CoursesService]
 })
 export class CourseListModule {
 	constructor() {

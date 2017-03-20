@@ -1,1 +1,24 @@
-<!-- login content here -->
+<div class="container">
+    <div class="row">
+        <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="width: 100%;margin: 100px 0;">
+            <div class="form-group">
+                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" [(ngModel)]="login">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" [(ngModel)]="password">
+            </div>
+            <!--<div class="form-group text-center">
+                <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                <label for="remember"> Remember Me</label>
+            </div>-->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <button class="btn btn-primary" (click)="Login()">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

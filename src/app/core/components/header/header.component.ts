@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { AuthorizationService } from '../../services/auth/authorizationService';
 
 @Component({
 	selector: 'main-header',
@@ -8,7 +9,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
 	encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
-	constructor() {
+	private isAuthenticated: Boolean;
 
+	constructor(private authorizationService: AuthorizationService) {
+
+	}
+
+	public ngOnInit() {
+		this.isAuthenticated = this.authorizationService.IsAuthenticated();
 	}
 }

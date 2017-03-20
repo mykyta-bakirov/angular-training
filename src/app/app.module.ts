@@ -27,14 +27,15 @@ import { NoContentComponent } from './pages/no-content';
 import { HeaderModule, FooterModule } from './core/components';
 
 import { CourseListModule } from  './pages/courses/list';
+import { LoginModule } from  './pages/login';
 
 // Services
 
-import { TodoService } from './core/services';
+import { AuthorizationService } from './core/services/auth/authorizationService';
 
 // Application wide providers
 const APP_PROVIDERS = [
-	TodoService
+	AuthorizationService
 ];
 
 /**
@@ -53,7 +54,8 @@ const APP_PROVIDERS = [
 		RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
 		HeaderModule,
 		FooterModule,
-		CourseListModule
+		CourseListModule,
+		LoginModule
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection
 		ENV_PROVIDERS,
