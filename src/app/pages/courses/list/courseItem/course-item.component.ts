@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CourseItem } from '../../../../core/entities/CourseItem';
 
 @Component({
 	selector: 'course-item',
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 	styles: [require('./course-item.component.scss')],
 	template: require('./course-item.component.html')

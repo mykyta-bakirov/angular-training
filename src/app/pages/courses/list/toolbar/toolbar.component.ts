@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation, Input, OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
 	selector: 'courses-toolbar',
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 	styles: [require('./toolbar.component.scss')],
 	template: require('./toolbar.component.html')

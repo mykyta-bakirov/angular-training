@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AuthorizationService } from '../../services/auth/authorizationService';
+import { User } from '../../entities/User';
 
 @Component({
 	selector: 'main-header',
@@ -9,13 +10,20 @@ import { AuthorizationService } from '../../services/auth/authorizationService';
 	encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
-	private isAuthenticated: Boolean;
+	public user: User;
 
-	constructor(private authorizationService: AuthorizationService) {
-
+	constructor(private authorizationService: AuthorizationService, private change: ChangeDetectorRef) {
 	}
 
 	public ngOnInit() {
-		this.isAuthenticated = this.authorizationService.IsAuthenticated();
+		this.authorizationService.User.subscribe(
+			user => {
+				this.user = user;
+			}
+		); 
+	}
+
+	public logOff(){
+		this.authorizationService.Logout();
 	}
 }

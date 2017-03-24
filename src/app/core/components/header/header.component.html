@@ -5,12 +5,13 @@
 				<div class="logo">
 				</div>
 			</div>
-			<div class="col-10" *ngIf="isAuthenticated">
-				<span class="pill navbar-text">breadcrumb</span>
+			<div class="col-10" *ngIf="user">
+				
+				<span class="pill navbar-text">breadcrumb </span>
 				<span class="float-right navbar-text">
-					user login
+					{{user.login}}
 					<br />
-					<a href="#">log off</a>
+					<a href="#" (click)="logOff()">log off</a>
 					</span>
 			</div>
 		</div>

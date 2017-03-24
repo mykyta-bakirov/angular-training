@@ -18,42 +18,35 @@ export class CoursesService {
         }
     }
 
-    public GetList(): Array<CourseItem> {
-        return this.courses;
+    public GetList(): Observable<Array<CourseItem>> {
+        return Observable.of(this.courses);
     }
 
-    public AddCourse(course: CourseItem): Boolean {
+    public AddCourse(course: CourseItem): Observable<Boolean> {
         if (!course) {
-            return false;
+            return Observable.of(false);
         }
         this.courses.push(course);
-        return true;
+        return Observable.of(true);
     }
 
-    public GetItemById(id: number): CourseItem {
-        debugger;
-        return this.getItemById(id);
+    public GetItemById(id: number): Observable<CourseItem> {
+        return Observable.of(this.getItemById(id));
     }
 
-    public UpdateItem(course: CourseItem): Boolean {
-        if (!course) {
-            return false;
-        }
-        var item = this.getItemById(course.id);
-        if (!item) {
-            return false; 
-        }
-        item = course;
-        return true;
+    public UpdateItem(course: CourseItem): Observable<Boolean> {
+        //TODO: to be implemented in future tasks
+        return Observable.of(true);
     }
 
-    public RemoveItem(course: CourseItem): Boolean {
+    public RemoveItem(course: CourseItem): Observable<Boolean> {
         var index = this.courses.indexOf(course);
-        if (index < 0) {
-            return false;
+        var response = false;
+        if (index >= 0) {
+            this.courses.splice(index, 1);
+            response = true;
         }
-        this.courses.splice(index, 1);
-        return true;
+        return Observable.of(response);
     }
 
     private getItemById(id: number) {

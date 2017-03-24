@@ -1,11 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import {
-	Component,
-	OnInit,
-	ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit,	ViewEncapsulation,	ChangeDetectionStrategy } from '@angular/core';
 import { AppState } from './app.service';
 
 /*

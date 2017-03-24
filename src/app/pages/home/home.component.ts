@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { TodoService } from '../../core/services';
@@ -7,6 +7,7 @@ import { TodoItem } from '../../core/entities';
 @Component({
 	selector: 'home',
 	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 	styles: [require('./home.styles.scss')],
 	template: require('./home.template.html')
