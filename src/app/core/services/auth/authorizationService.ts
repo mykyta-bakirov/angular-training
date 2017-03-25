@@ -15,15 +15,23 @@ export class AuthorizationService {
         this.User = this.UserSubject.asObservable();
     }
 
-    public Login(login: string, password: string) {
+    public Login(login: string, password: string):Observable<User> {
         this._user = new User();
         this._user.login = login;
         this._user.password = password;
 
-        this.UserSubject.next(this._user);
+        
+
+        return new Observable(observer => {
+            this.UserSubject.next(this._user);
+
+            setTimeout(() => {
+                observer.complete();
+            }, 1000);
+        });
     }
 
-    public Logout() {
+    public Logout():void {
         this._user = null;
         this.UserSubject.next(this._user);
     }

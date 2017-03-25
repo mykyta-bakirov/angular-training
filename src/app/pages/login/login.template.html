@@ -2,10 +2,10 @@
     <div class="row">
         <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="width: 100%;margin: 100px 0;">
             <div class="form-group">
-                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" [(ngModel)]="login">
+                <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" [(ngModel)]="login" required>
             </div>
             <div class="form-group">
-                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" [(ngModel)]="password">
+                <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" [(ngModel)]="password" required>
             </div>
             <!--<div class="form-group text-center">
                 <input type="checkbox" tabindex="3" class="" name="remember" id="remember">

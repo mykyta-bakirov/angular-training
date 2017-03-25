@@ -46,7 +46,14 @@ export class CoursesService {
             this.courses.splice(index, 1);
             response = true;
         }
-        return Observable.of(response);
+        // imitation of http request
+        return new Observable(observer => {
+            observer.next(response);
+
+            setTimeout(() => {
+                observer.complete();
+            }, 1000);
+        });
     }
 
     private getItemById(id: number) {

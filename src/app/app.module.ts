@@ -22,6 +22,7 @@ import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
 import { NoContentComponent } from './pages/no-content';
+import { LoaderBlockComponent } from './core/components/loaderBlock/loaderBlock.component';
 
 // Components
 import { HeaderModule, FooterModule } from './core/components';
@@ -32,10 +33,12 @@ import { LoginModule } from  './pages/login';
 // Services
 
 import { AuthorizationService } from './core/services/auth/authorizationService';
+import { LoaderBlockService } from './core/services/loaderBlock/loaderBlock.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
-	AuthorizationService
+	AuthorizationService,
+	LoaderBlockService
 ];
 
 /**
@@ -45,7 +48,8 @@ const APP_PROVIDERS = [
 	bootstrap: [AppComponent],
 	declarations: [
 		AppComponent,
-		NoContentComponent
+		NoContentComponent,
+		LoaderBlockComponent
 	],
 	imports: [ // import Angular's modules
 		BrowserModule,
