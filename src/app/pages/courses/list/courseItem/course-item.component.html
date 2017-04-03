@@ -1,8 +1,10 @@
-<div class="row course-item">
+<div class="row course-item" [courseplate]="courseItem" [ngClass]="{ 'top-rated': courseItem.topRated }">
     <div class="col-10">
         <h5>
-            <b>{{courseItem.title}}</b>
-            <span class="ml-5">{{courseItem.durationMins}}</span>
+
+            <b>{{courseItem.title | uppercase }}</b>
+            <span class="ml-5">{{courseItem.durationMins | duration}}</span>
+            <b *ngIf="courseItem.topRated">	&#9733;</b>
             <span class="float-right">{{courseItem.createDate | date}}</span>
 
         </h5>

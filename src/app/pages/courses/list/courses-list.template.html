@@ -1,7 +1,9 @@
-
-<courses-toolbar>
+<courses-toolbar (onSearch)="filterCourse($event)">
 </courses-toolbar>
 <div class="courses-list">
-    <course-item *ngFor="let courseItem of courses" [courseItem]="courseItem" (onDelete)="onDeleteCourse($event)">
+    <div *ngIf="courses.length == 0" class="text-center">
+        No data. Feel free to add new course
+    </div>
+    <course-item *ngFor="let courseItem of filteredCourses | orderBy" [courseItem]="courseItem" (onDelete)="onDeleteCourse($event)">
     </course-item>
 </div>

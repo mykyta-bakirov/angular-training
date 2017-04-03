@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, EventEmitter, Input, Output, OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
 	selector: 'courses-toolbar',
@@ -11,11 +11,13 @@ import { Component, ViewEncapsulation, Input, OnChanges, OnInit, DoCheck, AfterC
 export class CoursesToolbarComponent {
 	private searchText: string;
 
+	@Output() public onSearch = new EventEmitter<string>();
+
 	constructor() {
 	};
 
 	search() {
-		console.log(this.searchText);
+		this.onSearch.emit(this.searchText);
 	};
 
 	public ngOnChanges() {

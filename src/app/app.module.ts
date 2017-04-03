@@ -27,11 +27,13 @@ import { LoaderBlockComponent } from './core/components/loaderBlock/loaderBlock.
 // Components
 import { HeaderModule, FooterModule } from './core/components';
 
-import { CourseListModule } from  './pages/courses/list';
-import { LoginModule } from  './pages/login';
+import { CourseListModule } from './pages/courses/list';
+import { LoginModule } from './pages/login';
+
+// Directives
+//import { CoursePlateDirective } from './core/directives/course.plate.directive';
 
 // Services
-
 import { AuthorizationService } from './core/services/auth/authorizationService';
 import { LoaderBlockService } from './core/services/loaderBlock/loaderBlock.service';
 
@@ -49,13 +51,15 @@ const APP_PROVIDERS = [
 	declarations: [
 		AppComponent,
 		NoContentComponent,
-		LoaderBlockComponent
+		LoaderBlockComponent,
+
+		//CoursePlateDirective
 	],
 	imports: [ // import Angular's modules
 		BrowserModule,
 		FormsModule,
 		HttpModule,
-		RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
+		RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
 		HeaderModule,
 		FooterModule,
 		CourseListModule,

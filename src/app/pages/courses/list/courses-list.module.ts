@@ -14,11 +14,23 @@ import { CoursesToolbarComponent } from './toolbar/toolbar.component';
 import { CoursesService } from '../../../core/services/courses/courses.service';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
+// directives
+import { CoursePlateDirective } from '../../../core/directives/course.plate.directive';
+
+//pipes
+import { DurationPipe } from './pipes/duration.pipe';
+import { OrderByPipe } from './pipes/orderBy.pipe';
+import { SearchCoursePipe } from './pipes/search.course.pipe';
+
 @NgModule({
 	declarations: [
 		CoursesListComponent,
 		CourseItemComponent,
-		CoursesToolbarComponent
+		CoursesToolbarComponent,
+
+		CoursePlateDirective,
+		DurationPipe,
+		OrderByPipe
 	],
 	imports: [
 		routes,
@@ -29,7 +41,10 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 			confirmButtonType: 'danger' // set defaults here
 		})
 	],
-	providers: [CoursesService]
+	providers: [
+		CoursesService,
+		SearchCoursePipe
+	]
 })
 export class CourseListModule {
 	constructor() {

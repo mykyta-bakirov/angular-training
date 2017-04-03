@@ -1,3 +1,7 @@
 .course-item div[class^='col-']{
     padding: 10px;
 }
+
+.course-item.top-rated{
+    background-color: #eee;
+}
