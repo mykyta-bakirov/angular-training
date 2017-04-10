@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from './../../../core/shared/shared.module';
+
 // routes
 import { routes } from './courses-list.routes';
 
@@ -18,7 +20,6 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { CoursePlateDirective } from '../../../core/directives/course.plate.directive';
 
 //pipes
-import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/orderBy.pipe';
 import { SearchCoursePipe } from './pipes/search.course.pipe';
 
@@ -29,11 +30,11 @@ import { SearchCoursePipe } from './pipes/search.course.pipe';
 		CoursesToolbarComponent,
 
 		CoursePlateDirective,
-		DurationPipe,
 		OrderByPipe
 	],
 	imports: [
 		routes,
+		SharedModule,
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,

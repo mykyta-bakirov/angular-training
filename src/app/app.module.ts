@@ -29,9 +29,7 @@ import { HeaderModule, FooterModule } from './core/components';
 
 import { CourseListModule } from './pages/courses/list';
 import { LoginModule } from './pages/login';
-
-// Directives
-//import { CoursePlateDirective } from './core/directives/course.plate.directive';
+import { NewCourseModule } from './pages/courses/new-course';
 
 // Services
 import { AuthorizationService } from './core/services/auth/authorizationService';
@@ -51,9 +49,7 @@ const APP_PROVIDERS = [
 	declarations: [
 		AppComponent,
 		NoContentComponent,
-		LoaderBlockComponent,
-
-		//CoursePlateDirective
+		LoaderBlockComponent
 	],
 	imports: [ // import Angular's modules
 		BrowserModule,
@@ -63,7 +59,8 @@ const APP_PROVIDERS = [
 		HeaderModule,
 		FooterModule,
 		CourseListModule,
-		LoginModule
+		LoginModule,
+		NewCourseModule
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection
 		ENV_PROVIDERS,

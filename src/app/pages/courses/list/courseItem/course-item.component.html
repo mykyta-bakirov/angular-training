@@ -5,7 +5,7 @@
             <b>{{courseItem.title | uppercase }}</b>
             <span class="ml-5">{{courseItem.durationMins | duration}}</span>
             <b *ngIf="courseItem.topRated">	&#9733;</b>
-            <span class="float-right">{{courseItem.createDate | date}}</span>
+            <span class="float-right">{{courseItem.date | date}}</span>
 
         </h5>
         <p class="text-justify">

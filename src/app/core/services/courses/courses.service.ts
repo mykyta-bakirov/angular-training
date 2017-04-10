@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CourseItem } from '../../entities/CourseItem';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class CoursesService {
     private courses: Array<CourseItem>;
+    private coursesSubject: BehaviorSubject<Array<CourseItem>>;
 
     constructor() {
         this.courses = new Array<CourseItem>();
@@ -17,20 +18,29 @@ export class CoursesService {
                 new Date(),
                 false);
             if (i < 2) {
-                courseItem.createDate.setDate(courseItem.createDate.getDate() - 15);
+                courseItem.date.setDate(courseItem.date.getDate() - 15);
                 courseItem.topRated = true;
             }
 
             if (i >= 2 && i <= 4) {
-                courseItem.createDate.setDate(courseItem.createDate.getDate() + 1);
+                courseItem.date.setDate(courseItem.date.getDate() + 1);
             }
 
-            this.courses.push(courseItem);
+            let twoWeeksDate = new Date();
+            twoWeeksDate.setDate((new Date()).getDate() - 14);
+
+            if (courseItem.date > twoWeeksDate) {
+                this.courses.push(courseItem);
+            }
         }
+
+        this.coursesSubject = new BehaviorSubject(this.courses);
     }
 
     public GetList(): Observable<Array<CourseItem>> {
-        return Observable.of(this.courses);
+        return this.coursesSubject.asObservable().map((courseItems: Array<CourseItem>) => {
+            return courseItems.slice(0);
+        });
     }
 
     public AddCourse(course: CourseItem): Observable<Boolean> {
@@ -67,7 +77,7 @@ export class CoursesService {
         });
     }
 
-    private getItemById(id: number) {
+    private getItemById(id: number): CourseItem {
         var items = this.courses.filter((item: CourseItem) => {
             return item.id == id;
         });

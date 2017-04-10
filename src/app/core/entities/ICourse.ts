@@ -3,6 +3,6 @@ export interface ICourse {
 	title: string;
 	description: string;
 	durationMins: number;
-	createDate: Date;
+	date: Date;
 	topRated : Boolean;
 }

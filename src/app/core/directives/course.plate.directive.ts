@@ -15,14 +15,14 @@ export class CoursePlateDirective {
     public ngOnInit() {
         let currentDate = new Date();
         let twoWeeksDate = new Date();
-        twoWeeksDate.setDate(this.courseplate.createDate.getDate() - 14);
+        twoWeeksDate.setDate(this.courseplate.date.getDate() - 14);
 
-        if (this.courseplate.createDate < currentDate && this.courseplate.createDate > twoWeeksDate) {
+        if (this.courseplate.date < currentDate && this.courseplate.date > twoWeeksDate) {
             this.el.nativeElement.style.borderColor = 'green';
             return;
         }
 
-        if (this.courseplate.createDate > currentDate) {
+        if (this.courseplate.date > currentDate) {
             this.el.nativeElement.style.borderColor = 'blue';
             return;
         }

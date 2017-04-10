@@ -5,15 +5,15 @@ export class CourseItem implements ICourse {
     public title: string;
     public description: string;
     public durationMins: number;
-    public createDate: Date;
+    public date: Date;
     public topRated : Boolean;
 
-    constructor(id: number, title: string, description: string, durationMins: number, createDate: Date, topRated: Boolean) {
+    constructor(id: number, title: string, description: string, durationMins: number, date: Date, topRated: Boolean) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.durationMins = durationMins;
-        this.createDate = createDate;
+        this.date = date;
         this.topRated = topRated;
     }
 }

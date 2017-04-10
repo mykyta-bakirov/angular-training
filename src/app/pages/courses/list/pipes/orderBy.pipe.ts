@@ -7,10 +7,10 @@ import { CourseItem } from '../../../../core/entities/CourseItem';
 export class OrderByPipe implements PipeTransform {
     transform(courseItems: CourseItem[]): CourseItem[] {
         return courseItems.sort((a, b) => {
-            if (a.createDate < b.createDate) {
+            if (a.date < b.date) {
                 return -1;
             } else {
-                if (a.createDate > b.createDate) {
+                if (a.date > b.date) {
                     return 1;
                 } else {
                     return 0;
