@@ -1,8 +1,31 @@
-﻿.courses-list{
+﻿@import "../../../styles/variables/colors.scss";
+
+.courses-list{
     display: block;
 
     .course-item{
         margin: 10px 0;
         border: 1px solid #ccc;
+    }
+}
+
+.courses-pager{
+margin: 20px auto;
+text-align: center;
+
+    a{
+        background-color: $c-primary;
+        color: $c-humming-bird;
+        text-align: center;
+        display: inline-block;
+        width: 30px;
+        text-decoration: none;
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #000;
+    }
+
+    a.current{
+        background-color: #ccc;
     }
 }

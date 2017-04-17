@@ -15,7 +15,6 @@ export class LoginComponent {
 	private password: string = "";
 
 	constructor(private _authorizationService: AuthorizationService, private _loaderBlockService: LoaderBlockService) {
-		console.log('Login constructor');
 		this._authorizationService.Logout();
 	}
 
@@ -28,7 +27,7 @@ export class LoginComponent {
 				() => { },
 				() => {
 					//TODO: inject angular router after lecture. Use it after navigation
-					window.location.href = "http://localhost:3000/#/";
+					window.location.href = "/#/";
 					this._loaderBlockService.Hide();
 				}
 			)

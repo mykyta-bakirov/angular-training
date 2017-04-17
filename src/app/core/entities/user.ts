@@ -3,6 +3,9 @@ export class User {
     public login: string
     public password: string
 
-    constructor() {
+    constructor(id:number, login:string, password: string) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
     }
 }

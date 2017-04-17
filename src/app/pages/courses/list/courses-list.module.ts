@@ -21,6 +21,7 @@ import { CoursePlateDirective } from '../../../core/directives/course.plate.dire
 
 //pipes
 import { OrderByPipe } from './pipes/orderBy.pipe';
+import { NumberToArrayPipe } from './../../../core/pipes/numberToArray.pipe';
 import { SearchCoursePipe } from './pipes/search.course.pipe';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SearchCoursePipe } from './pipes/search.course.pipe';
 		CoursesToolbarComponent,
 
 		CoursePlateDirective,
-		OrderByPipe
+		OrderByPipe,
+		NumberToArrayPipe
 	],
 	imports: [
 		routes,

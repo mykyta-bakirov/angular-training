@@ -21,6 +21,9 @@ export class HeaderComponent {
 		this.userChangesubscription = this.authorizationService.User.subscribe(
 			user => {
 				this.user = user;
+				if (!user) {
+					window.location.href = "/#/login";
+				}
 			}
 		);
 

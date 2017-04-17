@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../entities/User';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class AuthorizationService {
@@ -10,29 +11,30 @@ export class AuthorizationService {
 
     public source;
 
-    constructor() {
+    constructor(private http: Http) {
         this.UserSubject = <BehaviorSubject<User>>new BehaviorSubject(this._user);
         this.User = this.UserSubject.asObservable();
     }
 
-    public Login(login: string, password: string):Observable<User> {
-        this._user = new User();
-        this._user.login = login;
-        this._user.password = password;
+    public Login(login: string, password: string): Observable<User> {
+        return this.http.get("http://localhost:3001/users")
+            .delay(1000)
+            .map((d) => {
+                var u = d.json()[0];
 
-        
-
-        return new Observable(observer => {
-            this.UserSubject.next(this._user);
-
-            setTimeout(() => {
-                observer.complete();
-            }, 1000);
-        });
+                this._user = new User(u.id, u.login, u.password);;
+                this.UserSubject.next(this._user);
+            
+                return this._user;
+            });
     }
 
-    public Logout():void {
+    public Logout(): void {
         this._user = null;
         this.UserSubject.next(this._user);
+    }
+
+    public IsUserLoggedIn(): Boolean {
+        return this._user != null;
     }
 }

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CourseItem } from '../../entities/CourseItem';
+import { PagedCourseItems } from '../../entities/PagedCourseItems';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 
 @Injectable()
 export class CoursesService {
     private courses: Array<CourseItem>;
     private coursesSubject: BehaviorSubject<Array<CourseItem>>;
 
-    constructor() {
+    constructor(private http: Http) {
         this.courses = new Array<CourseItem>();
         for (var i = 0; i < 10; i++) {
             var courseItem = new CourseItem(
@@ -37,10 +39,26 @@ export class CoursesService {
         this.coursesSubject = new BehaviorSubject(this.courses);
     }
 
-    public GetList(): Observable<Array<CourseItem>> {
-        return this.coursesSubject.asObservable().map((courseItems: Array<CourseItem>) => {
-            return courseItems.slice(0);
-        });
+    public GetList(search: string, pageIndex: number, coursesPerPage: number): Observable<PagedCourseItems> {
+        var url = "http://localhost:3001/courses";
+
+        var args = new RequestOptions();
+        args.search = new URLSearchParams();
+        args.search.set("q", search);
+        args.search.set("_page", pageIndex.toString());
+        args.search.set("_limit", coursesPerPage.toString());
+
+        return this.http.get("http://localhost:3001/courses", args)
+            .map(response => {
+
+                var courses = response.json().map((c) => {
+                    return new CourseItem(c.id, c.name, c.description, c.length, new Date(c.date), c.isTopRated);
+                });
+
+                var totalCount = Number(response.headers.get("x-total-count"));
+                var pagedCourseItems = new PagedCourseItems(courses, totalCount, pageIndex, coursesPerPage);
+                return pagedCourseItems;
+            });
     }
 
     public AddCourse(course: CourseItem): Observable<Boolean> {
@@ -61,20 +79,10 @@ export class CoursesService {
     }
 
     public RemoveItem(course: CourseItem): Observable<Boolean> {
-        var index = this.courses.indexOf(course);
-        var response = false;
-        if (index >= 0) {
-            this.courses.splice(index, 1);
-            response = true;
-        }
-        // imitation of http request
-        return new Observable(observer => {
-            observer.next(response);
-
-            setTimeout(() => {
-                observer.complete();
-            }, 1000);
-        });
+        return this.http.delete("http://localhost:3001/courses/" + course.id)
+            .map((response) => {
+                return response.status == 200;
+            });
     }
 
     private getItemById(id: number): CourseItem {

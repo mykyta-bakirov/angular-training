@@ -1,10 +1,9 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, OnChanges, EventEmitter } from '@angular/core';
 import { CourseItem } from '../../../../core/entities/CourseItem';
 
 @Component({
 	selector: 'course-item',
 	encapsulation: ViewEncapsulation.None,
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 	styles: [require('./course-item.component.scss')],
 	template: require('./course-item.component.html')
@@ -12,6 +11,8 @@ import { CourseItem } from '../../../../core/entities/CourseItem';
 export class CourseItemComponent {
 	@Input() public courseItem: CourseItem;
 	@Output() public onDelete = new EventEmitter<CourseItem>();
+
+	public internalCourseItem: CourseItem;
 
 
 	public title: string = 'Do you really want to delete this course?';
