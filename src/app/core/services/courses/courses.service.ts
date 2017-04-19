@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CourseItem } from '../../entities/CourseItem';
 import { PagedCourseItems } from '../../entities/PagedCourseItems';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Http, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, RequestOptions, Request, URLSearchParams, RequestMethod } from '@angular/http';
 
 @Injectable()
 export class CoursesService {
@@ -42,15 +42,19 @@ export class CoursesService {
     public GetList(search: string, pageIndex: number, coursesPerPage: number): Observable<PagedCourseItems> {
         var url = "http://localhost:3001/courses";
 
-        var args = new RequestOptions();
-        args.search = new URLSearchParams();
-        args.search.set("q", search);
-        args.search.set("_page", pageIndex.toString());
-        args.search.set("_limit", coursesPerPage.toString());
+        var requestOptions = new RequestOptions();
+        requestOptions.url = url;
+        requestOptions.method = RequestMethod.Get;
 
-        return this.http.get("http://localhost:3001/courses", args)
+        requestOptions.search = new URLSearchParams();
+        requestOptions.search.set("q", search);
+        requestOptions.search.set("_page", pageIndex.toString());
+        requestOptions.search.set("_limit", coursesPerPage.toString());
+
+        this.http.request(new Request(requestOptions))
+
+        return this.http.request(new Request(requestOptions))
             .map(response => {
-
                 var courses = response.json().map((c) => {
                     return new CourseItem(c.id, c.name, c.description, c.length, new Date(c.date), c.isTopRated);
                 });

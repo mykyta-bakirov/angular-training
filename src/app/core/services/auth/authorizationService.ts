@@ -24,13 +24,16 @@ export class AuthorizationService {
 
                 this._user = new User(u.id, u.login, u.password);;
                 this.UserSubject.next(this._user);
-            
+
+                localStorage.setItem("token", u.fakeToken);
+
                 return this._user;
             });
     }
 
     public Logout(): void {
         this._user = null;
+        localStorage.removeItem("token");
         this.UserSubject.next(this._user);
     }
 

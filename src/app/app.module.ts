@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { AuthorizedHttp } from './core/services/authorizedHttp';
 import {
 	NgModule,
 	ApplicationRef
@@ -64,7 +65,15 @@ const APP_PROVIDERS = [
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection
 		ENV_PROVIDERS,
-		APP_PROVIDERS
+		APP_PROVIDERS,
+
+		{
+			provide: Http,
+			useFactory: (backend: XHRBackend, options: RequestOptions) => 
+				new AuthorizedHttp(backend, options)
+			,
+			deps: [XHRBackend, RequestOptions]
+		}
 	]
 })
 export class AppModule {

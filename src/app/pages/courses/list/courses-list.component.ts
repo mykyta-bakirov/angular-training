@@ -13,9 +13,9 @@ import { SearchCoursePipe } from './pipes/search.course.pipe';
 	providers: [],
 	styles: [require('./courses-list.styles.scss')],
 	template: require('./courses-list.template.html')
-})
+})  
 export class CoursesListComponent {
-	public coursesPage: Observable<PagedCourseItems>;
+	public coursesPage: PagedCourseItems;
 	public coursesPerPage = 4;
 	private searchText: string;
 
@@ -30,12 +30,11 @@ export class CoursesListComponent {
 	public filterCourse(searchText: string) {
 		console.info("filterCourse");
 		this.searchText = searchText;
-		this.coursesPage = this._coursesService.GetList(searchText, 0, this.coursesPerPage);
+		this._coursesService.GetList(searchText, 0, this.coursesPerPage).subscribe(coursesPage => this.coursesPage = coursesPage);
 	}
 
 	public setPage(pageIndex: number) {
-		console.info("set page");
-		this.coursesPage = this._coursesService.GetList(this.searchText, pageIndex, this.coursesPerPage);
+		this._coursesService.GetList(this.searchText, pageIndex, this.coursesPerPage).subscribe(coursesPage => this.coursesPage = coursesPage);
 	}
 
 	public ngOnInit() {
@@ -43,8 +42,7 @@ export class CoursesListComponent {
 			window.location.href = "/#/login";
 		}
 
-		console.info("init");
-		this.coursesPage = this._coursesService.GetList("", 0, this.coursesPerPage);
+		this._coursesService.GetList("", 0, this.coursesPerPage).subscribe(coursesPage => this.coursesPage = coursesPage);
 	}
 
 	public ngOnDestroy() {
@@ -58,7 +56,7 @@ export class CoursesListComponent {
 			() => { },
 			() => {
 				this._loaderBlockService.Hide();
-				this.coursesPage = this._coursesService.GetList(this.searchText, 0, this.coursesPerPage);
+				this._coursesService.GetList(this.searchText, 0, this.coursesPerPage).subscribe(coursesPage => this.coursesPage = coursesPage);
 			}
 		);
 	}

@@ -1,19 +1,19 @@
 <courses-toolbar (onSearch)="filterCourse($event)">
 </courses-toolbar>
 <div class="courses-list">
-    <div *ngIf="(coursesPage | async)?.courses.length == 0" class="text-center">
+    <div *ngIf="coursesPage?.courses.length == 0" class="text-center">
         No data. Feel free to add new course
     </div>
 
     <div>
-        <div *ngFor="let courseItem of (coursesPage | async)?.courses">
+        <div *ngFor="let courseItem of coursesPage?.courses">
             <course-item [courseItem]="courseItem" (onDelete)="onDeleteCourse($event)">
             </course-item>
         </div>
     </div>
     <div class="courses-pager">
-        <a href="#" [ngClass]="{'current': i == (coursesPage | async )?.pageIndex }" 
-        *ngFor="let i of Math.ceil((coursesPage | async )?.coursesTotalCount / coursesPerPage) | numberToArray"
+        <a href="#" [ngClass]="{'current': i == coursesPage?.pageIndex }" 
+        *ngFor="let i of Math.ceil(coursesPage?.coursesTotalCount / coursesPerPage) | numberToArray"
         (click)="setPage(i)">
         {{i}}
     </a>
