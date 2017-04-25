@@ -1,1 +1,7 @@
-<input class="form-control" type="text">
+<div [formGroup]="formGroup">
+    <input type="text" class="form-control" formControlName="dateField" (keyup)="onKeyUp()" />
+    <div *ngIf="formGroup.controls.dateField?.invalid && formGroup.controls.dateField?.dirty" class="alert alert-danger">
+        The valid date of format dd/MM/yyyy is required
+    </div>
+
+</div>

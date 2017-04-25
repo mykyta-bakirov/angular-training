@@ -1,4 +1,26 @@
 {
+  "authors": [
+    {
+      "id": 1,
+      "name": "Dog Swan"
+    },
+    {
+      "id": 2,
+      "name": "Sunny Tumbler"
+    },
+    {
+      "id": 3,
+      "name": "Grim Screamy Knife"
+    },
+    {
+      "id": 4,
+      "name": "Flipper Risky"
+    },
+    {
+      "id": 5,
+      "name": "Sleepy Beauty Doe"
+    }
+  ],
   "courses": [
     {
       "id": 4980,

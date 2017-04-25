@@ -1,1 +1,9 @@
-<input class="form-control" type="number" style="width:100px" [(ngModel)]="duration"> {{duration | duration}}
+<div [formGroup]="formGroup">
+    <input type="number" class="form-control" formControlName="duration" (keyup)="onKeyUp()" />
+    <span *ngIf="formGroup.controls.duration?.valid">
+        {{ formGroup.controls.duration.value | duration }}
+        </span>
+    <div *ngIf="formGroup.controls.duration?.invalid && formGroup.controls.duration?.dirty" class="alert alert-danger">
+        Duration field is required and should number
+    </div>
+</div>

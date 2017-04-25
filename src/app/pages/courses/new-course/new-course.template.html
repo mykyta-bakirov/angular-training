@@ -1,41 +1,49 @@
 <div class="container">
     <div class="row">
-        <form role="form">
+        <form role="form" [formGroup]="formGroup" (submit)="submit(formGroup)" class="new-course">
             <div class="form-group row">
                 <label for="example-text-input" class="col-4 col-form-label">Title</label>
                 <div class="col-8">
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" formControlName="title">
+                    <div *ngIf="formGroup.controls.title?.invalid && formGroup.controls.title?.dirty" class="alert alert-danger">
+                        Title field is required. Should be up to 50 symbols length
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-search-input" class="col-4 col-form-label">Description</label>
                 <div class="col-8">
-                    <textarea></textarea>
+                    <textarea class="form-control" formControlName="description"></textarea>
+                    <div *ngIf="formGroup.controls.description?.invalid && formGroup.controls.description?.dirty" class="alert alert-danger">
+                        Description field is required. Should be up to 500 symbols length
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-text-input" class="col-4 col-form-label">Date</label>
                 <div class="col-8">
-                    <new-course-date></new-course-date>
+                    <div new-course-date formControlName="date"></div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-text-input" class="col-4 col-form-label">Duration</label>
                 <div class="col-8">
-                    <new-course-duration></new-course-duration>
+                    <new-course-duration formControlName="duration"></new-course-duration>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-text-input" class="col-4 col-form-label">Authors</label>
                 <div class="col-8">
-                    <new-course-authors></new-course-authors>
+                    <new-course-authors [authors]="authors" formControlName="authors"></new-course-authors>
+                    <div *ngIf="formGroup.controls.authors?.invalid && formGroup.controls.authors?.dirty" class="alert alert-danger">
+                        At least one author is required
+                    </div>
                 </div>
             </div>
             <div>
-                <button class="btn btn-primary" (click)="save();">Save</button>
+                <input type="submit" class="btn btn-primary" value="Save" [disabled]="formGroup.invalid">
                 <button class="btn" (click)="cancel();">Cancel</button>
             </div>
-
 
         </form>
     </div>

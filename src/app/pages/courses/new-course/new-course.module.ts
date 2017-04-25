@@ -14,6 +14,9 @@ import { NewCourseDateComponent } from './new-course-date.component/new-course-d
 import { NewCourseDurationComponent } from './new-course-duration.component/new-course-duration.component';
 import { NewCourseAuthorsComponent } from './new-course-authors.component/new-course-authors.component';
 
+// providers
+import { AuthorsService } from '../../../core/services/authors/authors.service';
+
 @NgModule({
 	declarations: [
 		NewCourseComponent,
@@ -28,7 +31,7 @@ import { NewCourseAuthorsComponent } from './new-course-authors.component/new-co
 		ReactiveFormsModule,
 		CommonModule
 	],
-	providers: []
+	providers: [ AuthorsService ]
 })
 export class NewCourseModule {
 	constructor() {
