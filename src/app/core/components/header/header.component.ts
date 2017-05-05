@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectorRef } fr
 import { AuthorizationService } from '../../services/auth/authorizationService';
 import { Subscription } from 'rxjs';
 import { User } from '../../entities/User';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'main-header',
@@ -14,7 +15,7 @@ export class HeaderComponent {
 	public user: User;
 	private userChangesubscription: Subscription;
 
-	constructor(private authorizationService: AuthorizationService, private change: ChangeDetectorRef) {
+	constructor(private router: Router, private authorizationService: AuthorizationService, private change: ChangeDetectorRef) {
 	}
 
 	public ngOnInit() {
@@ -22,7 +23,7 @@ export class HeaderComponent {
 			user => {
 				this.user = user;
 				if (!user) {
-					window.location.href = "/#/login";
+					this.router.navigate(["/login"]);
 				}
 			}
 		);

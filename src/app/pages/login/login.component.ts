@@ -2,6 +2,8 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrateg
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthorizationService } from '../../core/services/auth/authorizationService';
 import { LoaderBlockService } from '../../core/services/loaderBlock/loaderBlock.service';
+import { Router } from '@angular/router';
+
 
 @Component({
 	selector: 'login',
@@ -14,7 +16,7 @@ import { LoaderBlockService } from '../../core/services/loaderBlock/loaderBlock.
 export class LoginComponent {
 	private formGroup: FormGroup;
 
-	constructor(private _authorizationService: AuthorizationService, private _loaderBlockService: LoaderBlockService) {
+	constructor(private router: Router, private _authorizationService: AuthorizationService, private _loaderBlockService: LoaderBlockService) {
 		this._authorizationService.Logout();
 
 		this.formGroup = new FormGroup({
@@ -32,9 +34,8 @@ export class LoginComponent {
 				() => { },
 				() => { },
 				() => {
-					//TODO: inject angular router after lecture. Use it after navigation
-					window.location.href = "/#/";
 					this._loaderBlockService.Hide();
+					this.router.navigate(['/']);
 				}
 			)
 		}

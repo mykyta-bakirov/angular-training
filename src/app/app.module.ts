@@ -2,18 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { AuthorizedHttp } from './core/services/authorizedHttp';
-import {
-	NgModule,
-	ApplicationRef
-} from '@angular/core';
-import {
-	removeNgStyles,
-	createNewHosts,
-} from '@angularclass/hmr';
-import {
-	RouterModule,
-	PreloadAllModules
-} from '@angular/router';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { removeNgStyles, createNewHosts, } from '@angularclass/hmr';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -30,6 +21,7 @@ import { HeaderModule, FooterModule } from './core/components';
 
 import { CourseListModule } from './pages/courses/list';
 import { LoginModule } from './pages/login';
+import { CourseModule } from './pages/courses/course';
 import { NewCourseModule } from './pages/courses/new-course';
 
 // Services
@@ -61,6 +53,7 @@ const APP_PROVIDERS = [
 		FooterModule,
 		CourseListModule,
 		LoginModule,
+		CourseModule,
 		NewCourseModule
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection

@@ -44,7 +44,7 @@ export class NewCourseDurationComponent implements ControlValueAccessor {
 
 	public onKeyUp(): void {
 		if (this.formGroup.valid) {
-			this.onChange(Number(this.formGroup.controls.duration.value));
+			this.onChange(Number(this.formGroup.controls["duration"].value));
 		} else {
 			this.onChange(null);
 		}

@@ -41,4 +41,8 @@ export class NewCourseAuthorsComponent implements ControlValueAccessor {
 		var selectedAuthors = this.authors.filter(author => author.isSelected);
 		this.onChange(selectedAuthors);
 	}
+
+	public onClick(){
+		console.log()
+	}
 }

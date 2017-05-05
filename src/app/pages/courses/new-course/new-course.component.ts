@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthorsService } from '../../../core/services/authors/authors.service';
 import { Author } from '../../../core/entities/Author';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'new-course',
@@ -15,7 +16,7 @@ export class NewCourseComponent {
 	private formGroup: FormGroup;
 	private authors: Array<Author>;
 
-	constructor(private authorsService: AuthorsService) {
+	constructor(private router: Router, private authorsService: AuthorsService) {
 		console.log('Page one constructor');
 	}
 
@@ -41,7 +42,9 @@ export class NewCourseComponent {
 	}
 
 	public cancel(): void {
+		this.router.navigate(['/']);
 		console.log("cancel click");
+
 	}
 
 	public submit(data: any): void {

@@ -47,7 +47,7 @@ export class NewCourseDateComponent implements ControlValueAccessor {
 
 	public onKeyUp(): void {
 		if (this.formGroup.valid) {
-			var parts = this.formGroup.controls.dateField.value.split('/');
+			var parts = this.formGroup.controls["dateField"].value.split('/');
 			this.onChange(new Date(Number(parts[2]), Number(parts[1]), Number(parts[0])));
 		} else {
 			this.onChange(null);

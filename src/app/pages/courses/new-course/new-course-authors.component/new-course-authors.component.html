@@ -1,5 +1,5 @@
-<div *ngFor="let author of authors" class="authors-wrapper" (change)="validateInput()">
+<div *ngFor="let author of authors" class="authors-wrapper" (click)="onClick()">
     <div class="checkbox">
-        <label><input type="checkbox" value="" [(ngModel)]="author.isSelected">{{author.name}}</label>
+        <label><input type="checkbox" value="" (change)="validateInput()" [(ngModel)]="author.isSelected">{{author.name}}</label>
     </div>
 </div>
