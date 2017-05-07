@@ -13,6 +13,7 @@ import { CoursesListComponent } from './courses-list.component';
 import { CourseItemComponent } from './courseItem/course-item.component';
 import { CoursesToolbarComponent } from './toolbar/toolbar.component';
 
+import { CoursesGuard } from '../../../core/services/guards/courses.guard';
 import { CoursesService } from '../../../core/services/courses/courses.service';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
@@ -45,6 +46,7 @@ import { SearchCoursePipe } from './pipes/search.course.pipe';
 		})
 	],
 	providers: [
+		CoursesGuard,
 		CoursesService,
 		SearchCoursePipe
 	]

@@ -51,8 +51,6 @@ export class CoursesService {
         requestOptions.search.set("_page", pageIndex.toString());
         requestOptions.search.set("_limit", coursesPerPage.toString());
 
-        this.http.request(new Request(requestOptions))
-
         return this.http.request(new Request(requestOptions))
             .map(response => {
                 var courses = response.json().map((c) => {
@@ -74,7 +72,17 @@ export class CoursesService {
     }
 
     public GetItemById(id: number): Observable<CourseItem> {
-        return Observable.of(this.getItemById(id));
+        var url = "http://localhost:3001/courses";
+
+        var requestOptions = new RequestOptions();
+        requestOptions.url = url + "/" + id;
+        requestOptions.method = RequestMethod.Get;
+
+        return this.http.request(new Request(requestOptions))
+            .map(response => {
+                var json = response.json();
+                return new CourseItem(json.id, json.name, json.description, json.length, new Date(json.date), json.isTopRated);
+            });
     }
 
     public UpdateItem(course: CourseItem): Observable<Boolean> {

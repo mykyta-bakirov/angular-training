@@ -1,8 +1,11 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthorsService } from '../../../core/services/authors/authors.service';
+import { CoursesService } from '../../../core/services/courses/courses.service';
 import { Author } from '../../../core/entities/Author';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CourseItem } from '../../../core/entities/CourseItem';
 
 @Component({
 	selector: 'new-course',
@@ -15,9 +18,12 @@ export class NewCourseComponent {
 
 	private formGroup: FormGroup;
 	private authors: Array<Author>;
+	private sub: any;
+	private courseItem: CourseItem;
 
-	constructor(private router: Router, private authorsService: AuthorsService) {
-		console.log('Page one constructor');
+	constructor(private router: Router, private route: ActivatedRoute, private authorsService: AuthorsService, private coursesService: CoursesService) {
+
+
 	}
 
 	public date: string;
@@ -28,27 +34,42 @@ export class NewCourseComponent {
 			title: new FormControl("", [Validators.required, Validators.maxLength(50)]),
 			description: new FormControl("", [Validators.required, Validators.maxLength(500)]),
 			date: new FormControl("", [Validators.required]),
-			duration: new FormControl("", [Validators.required]),
+			durationMins: new FormControl("", [Validators.required]),
 			authors: new FormControl("", [Validators.required])
 		});
 
 		this.authorsService.GetAllAuthors().subscribe((authors) => {
 			this.authors = authors;
 		});
+
+		this.sub = this.route.params.subscribe(params => {
+			var id = +params['id'];
+			if (isNaN(id)) {
+				return;
+			}
+			this.coursesService.GetItemById(id).subscribe(courseItem => {
+				this.courseItem = courseItem;
+				console.log(courseItem);
+				Object.keys(courseItem).forEach(name => {
+					if (this.formGroup.controls[name]) {
+						this.formGroup.controls[name].setValue(courseItem[name]);
+					}
+				});
+			})
+		});
 	}
 
-	public save(): void {
-		console.log("save click");
+	public ngOnDestroy() {
+		this.sub.unsubscribe();
 	}
 
 	public cancel(): void {
 		this.router.navigate(['/']);
-		console.log("cancel click");
-
 	}
 
 	public submit(data: any): void {
 		console.log(data.value);
+		this.router.navigate(["/"]);
 	}
 
 	public setDate(data: any) {

@@ -38,10 +38,6 @@ export class CoursesListComponent {
 	}
 
 	public ngOnInit() {
-		if (!this._authorizationService.IsUserLoggedIn()) {
-			window.location.href = "/#/login";
-		}
-
 		this._coursesService.GetList("", 0, this.coursesPerPage).subscribe(coursesPage => this.coursesPage = coursesPage);
 	}
 

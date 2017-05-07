@@ -30,7 +30,16 @@ export class NewCourseDateComponent implements ControlValueAccessor {
 	}
 
 	public writeValue(obj: any): void {
-		console.log("writeValue", obj)
+		var date = new Date(obj);
+		if (!isNaN(date.getDate())) {
+			var day = date.getDate();
+			var dd = day < 10 ? '0' + day : day;
+
+			var month = date.getMonth() + 1;
+			var mm = month < 10 ? '0' + month : month;
+
+			this.formGroup.controls["dateField"].setValue(dd + "/" + mm + "/" + date.getFullYear());
+		}
 	}
 
 	public registerOnChange(fn: any): void {
@@ -42,7 +51,7 @@ export class NewCourseDateComponent implements ControlValueAccessor {
 	}
 
 	public setDisabledState(isDisabled: boolean): void {
-		console.log("setDisabledState: ", isDisabled);
+		//console.log("setDisabledState: ", isDisabled);
 	}
 
 	public onKeyUp(): void {

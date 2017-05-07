@@ -26,8 +26,11 @@ export class NewCourseDurationComponent implements ControlValueAccessor {
 		});
 	}
 
-	public writeValue(obj: any): void {
-		console.log("writeValue", obj)
+	public writeValue(obj: number): void {
+		var number = Number(obj);
+		if (!isNaN(number)) {
+			this.formGroup.controls["duration"].setValue(number);
+		}
 	}
 
 	public registerOnChange(fn: any): void {

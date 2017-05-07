@@ -12,26 +12,13 @@ import { Router } from '@angular/router';
 	encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
-	public user: User;
-	private userChangesubscription: Subscription;
-
-	constructor(private router: Router, private authorizationService: AuthorizationService, private change: ChangeDetectorRef) {
+	constructor(private authorizationService: AuthorizationService, private change: ChangeDetectorRef) {
 	}
 
 	public ngOnInit() {
-		this.userChangesubscription = this.authorizationService.User.subscribe(
-			user => {
-				this.user = user;
-				if (!user) {
-					this.router.navigate(["/login"]);
-				}
-			}
-		);
-
 	}
 
 	public ngOnDestroy() {
-		this.userChangesubscription.unsubscribe();
 	}
 
 	public logOff() {
